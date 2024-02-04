@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Base.Patterns.Object_Pool
@@ -72,6 +73,11 @@ namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Base.Patterns.Object_Poo
                 _freeObjects.Push(usedObject);
             }
             _usedObjects.Clear();
+        }
+
+        public List<T> GetAllUsedObjects<T>() where T : IPoolable
+        {
+            return _usedObjects.Cast<T>().ToList();
         }
     }
 }

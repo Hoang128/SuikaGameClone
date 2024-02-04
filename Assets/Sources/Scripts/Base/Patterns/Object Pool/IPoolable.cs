@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Base.Patterns.Object_Pool
 {
     public interface IPoolable

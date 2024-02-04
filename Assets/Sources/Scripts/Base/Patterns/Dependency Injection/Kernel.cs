@@ -6,18 +6,18 @@ namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Base.Patterns.Dependency
 {
     public class Kernel : MonoBehaviour, IKernel
     {
-        private static Kernel _instance;
+        public static Kernel Instance;
         private readonly Dictionary<Type, IModule> _bindings = new Dictionary<Type, IModule>();
 
         public void Awake()
         {
-            if (_instance != null)
+            if (Instance != null)
             {
                 Destroy(gameObject);
             }
             else
             {
-                _instance = this;
+                Instance = this;
                 DontDestroyOnLoad(gameObject);
             }
         }
@@ -27,10 +27,10 @@ namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Base.Patterns.Dependency
             Type moduleType = typeof(TModule);
             for (var i = 0; i < transform.childCount; i++)
             {
-                if (moduleType.IsAssignableFrom(transform.GetChild(i).GetType()))
+                if (moduleType.IsAssignableFrom(transform.GetChild(i).GetComponent<TModule>().GetType()))
                 {
-                    IModule module = transform.GetChild(i) as IModule;
-                    ((TModule)module).InitModule();
+                    IModule module = transform.GetChild(i).GetComponent<TModule>();
+                    module.InitModule();
                     _bindings.Add(moduleType, module);
                     break;
                 }
