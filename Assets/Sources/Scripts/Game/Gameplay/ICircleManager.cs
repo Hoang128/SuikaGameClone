@@ -4,10 +4,10 @@ namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Game.Gameplay
 {
     public interface ICircleManager : IModule
     {
-        public void CreateCircle();
-        public void CreateCircle(int size);
-        public void ReturnCircle(Circle circle);
-        public void MergeCircles(Circle circle1, Circle circle2);
+        public ICircle CreateCircle();
+        public ICircle CreateCircle(int size);
+        public void ReturnCircle(ICircle circle);
+        public void MergeCircles(ICircle circle1, ICircle circle2);
         public int GetmaxCircleSize();
     }
 }

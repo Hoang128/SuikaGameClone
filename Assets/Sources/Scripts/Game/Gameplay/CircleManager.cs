@@ -15,19 +15,20 @@ namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Game.Gameplay
         }
 
         [Button]
-        public void CreateCircle()
+        public ICircle CreateCircle()
         {
-            objectPool.GetObject<Circle>();
+            return objectPool.GetObject<Circle>();
         }
 
-        public void CreateCircle(int size)
+        public ICircle CreateCircle(int size)
         {
             Circle circle = objectPool.GetObject<Circle>();
             circle.Init(size);
+            return circle;
         }
 
         [Button]
-        public void ReturnCircle(Circle circle)
+        public void ReturnCircle(ICircle circle)
         {
             objectPool.ReturnObject(circle);
         }
@@ -43,10 +44,12 @@ namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Game.Gameplay
             objectPool.ResetPool();
         }
 
-        public void MergeCircles(Circle circle1, Circle circle2)
+        public void MergeCircles(ICircle circle1, ICircle circle2)
         {
             ReturnCircle(circle1);
             ReturnCircle(circle2);
+            ICircle newCircle = CreateCircle(circle1.Size + 1);
+            newCircle.GetComponent<Transform>().position = (circle1.GetComponent<Transform>().position + circle2.GetComponent<Transform>().position) / 2f;
         }
 
         public int GetmaxCircleSize()

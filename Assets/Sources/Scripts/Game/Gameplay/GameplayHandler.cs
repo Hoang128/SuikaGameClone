@@ -1,23 +1,25 @@
-using System.Collections;
 using System.Collections.Generic;
 using Assembly_CSharp_Editor.Assets.Sources.Scripts.Base.Patterns.Dependency_Injection;
 using Assembly_CSharp_Editor.Assets.Sources.Scripts.Game.Gameplay;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class GameplayHandler : MonoBehaviour
 {
     private ICircleManager circleManager;
     private int currMaxCircleSize;
 
+    [Header("Gameplay Settings")]
     [SerializeField] private int initCircleNumber;
     [SerializeField] private List<InitCircleSizeSpaceParams> InitCircleSizeSpaceParamsList;
+
+    [Header("Gameplay Sub-Components")]
+    [SerializeField] private CircleCreator circleCreator;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        circleManager = Kernel.Instance.GetModule<ICircleManager>();
     }
 
     // Update is called once per frame
@@ -29,15 +31,7 @@ public class GameplayHandler : MonoBehaviour
     [Button]
     public void StartNewGame()
     {
-        circleManager = Kernel.Instance.GetModule<ICircleManager>();
-        currMaxCircleSize = 0;
-
-        for (int i = 0; i < initCircleNumber; i++)
-        {
-            int size = Random.Range(InitCircleSizeSpaceParamsList[currMaxCircleSize].min, InitCircleSizeSpaceParamsList[currMaxCircleSize].max);
-            circleManager.CreateCircle(size);
-        }
-        UpdateMaxCircleSize();
+        circleCreator.StartNewGame();
     }
 
     public void UpdateMaxCircleSize()

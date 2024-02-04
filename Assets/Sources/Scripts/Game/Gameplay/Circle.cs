@@ -1,3 +1,4 @@
+using Assembly_CSharp_Editor.Assets.Sources.Scripts.Base.Patterns.Dependency_Injection;
 using Assembly_CSharp_Editor.Assets.Sources.Scripts.Base.Patterns.Object_Pool;
 using UnityEngine;
 
@@ -5,6 +6,7 @@ namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Game.Gameplay
 {
     public class Circle : MonoBehaviour, ICircle
     {
+        [SerializeField] float scaleRatio = 0.1f;
         private SpriteRenderer spriteRenderer;
         private CircleCollider2D circleCollider;
         private Rigidbody2D rb2D;
@@ -31,12 +33,25 @@ namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Game.Gameplay
 
         public void OnCollisionEnter2D(Collision2D collision)
         {
-            
+            if (collision.gameObject.layer != LayerMask.NameToLayer("Circle"))
+            {
+                return;
+            }
+            if (rb2D.gravityScale == 0f || collision.transform.GetComponent<Rigidbody2D>().gravityScale == 0f)
+            {
+                return;
+            }
+            if (collision.transform.GetComponent<ICircle>().Size == Size)
+            {
+                Kernel.Instance.GetModule<ICircleManager>().MergeCircles(this, collision.transform.GetComponent<ICircle>());
+            }
         }
 
         public void Init(int size)
         {
-            transform.localScale = new Vector3(size, size, 1);
+            Size = size;
+            float sizeScale = size * scaleRatio;
+            transform.localScale = new Vector3(sizeScale, sizeScale, 1);
             switch (size)
             {
                 case 1:
@@ -70,6 +85,11 @@ namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Game.Gameplay
                     spriteRenderer.color = Color.grey;
                     break;
             }
+        }
+
+        public void SetGravity(bool isCanDrop)
+        {
+            rb2D.gravityScale = isCanDrop ? 1 : 0;
         }
     }
 }
