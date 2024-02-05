@@ -91,5 +91,10 @@ namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Game.Gameplay
         {
             rb2D.gravityScale = isCanDrop ? 1 : 0;
         }
+
+        public void SetActive(bool isActive)
+        {
+            gameObject.SetActive(isActive);
+        }
     }
 }

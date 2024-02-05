@@ -79,5 +79,15 @@ namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Base.Patterns.Object_Poo
         {
             return _usedObjects.Cast<T>().ToList();
         }
+
+        public List<T> GetAllFreeObjects<T>() where T : IPoolable
+        {
+            return _freeObjects.Cast<T>().ToList();
+        }
+
+        public void SetPoolObject(object poolObject)
+        {
+            _poolObject = poolObject as GameObject;
+        }
     }
 }
