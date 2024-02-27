@@ -9,5 +9,7 @@ namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Base.Patterns.Object_Poo
         public void ReturnObject<T>(T obj) where T : IPoolable;
         public void ResetPool();
         public List<T> GetAllUsedObjects<T>() where T : IPoolable;
+        public List<T> GetAllFreeObjects<T>() where T : IPoolable;
+        public void SetPoolObject(object poolObject);
     }
 }

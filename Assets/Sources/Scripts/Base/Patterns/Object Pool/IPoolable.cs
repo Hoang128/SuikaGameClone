@@ -7,5 +7,6 @@ namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Base.Patterns.Object_Poo
         public void OnGet();
         public void OnReturn();
         public T GetComponent<T>();
+        public void SetActive(bool isActive);
     }
 }
