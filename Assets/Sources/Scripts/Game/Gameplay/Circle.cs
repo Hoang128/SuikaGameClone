@@ -7,6 +7,7 @@ namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Game.Gameplay
     public class Circle : MonoBehaviour, ICircle
     {
         [SerializeField] float scaleRatio = 0.1f;
+        [SerializeField] float scaleStart = 1f;
         private SpriteRenderer spriteRenderer;
         private CircleCollider2D circleCollider;
         private Rigidbody2D rb2D;
@@ -50,7 +51,7 @@ namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Game.Gameplay
         public void Init(int size)
         {
             Size = size;
-            float sizeScale = size * scaleRatio;
+            float sizeScale = scaleStart + size * scaleRatio;
             transform.localScale = new Vector3(sizeScale, sizeScale, 1);
             switch (size)
             {

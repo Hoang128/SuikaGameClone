@@ -9,5 +9,6 @@ namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Game.Gameplay
         public void ReturnCircle(ICircle circle);
         public void MergeCircles(ICircle circle1, ICircle circle2);
         public int GetmaxCircleSize();
+        public void ClearAllCircles();
     }
 }

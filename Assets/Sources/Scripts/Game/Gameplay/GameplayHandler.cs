@@ -20,6 +20,7 @@ public class GameplayHandler : MonoBehaviour
     void Start()
     {
         circleManager = Kernel.Instance.GetModule<ICircleManager>();
+        StartNewGame();
     }
 
     // Update is called once per frame
@@ -31,6 +32,7 @@ public class GameplayHandler : MonoBehaviour
     [Button]
     public void StartNewGame()
     {
+        circleManager.ClearAllCircles();
         circleCreator.StartNewGame();
     }
 
