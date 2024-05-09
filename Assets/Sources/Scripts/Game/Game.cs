@@ -7,7 +7,7 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        Kernel.Instance.SetModule<ICircleManager>();
+        Kernel.Instance.SetModule<IFruitManager>();
     }
 
     // Update is called once per frame

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7121917907379257093}
   - component: {fileID: 9065469645254200079}
   m_Layer: 3
-  m_Name: Circle
+  m_Name: Fruit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,7 +103,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 2550ec7ee19a272de8a752e1e3bb35b7, type: 2}
   m_IncludeLayers:

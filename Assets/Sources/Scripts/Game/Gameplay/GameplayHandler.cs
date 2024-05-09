@@ -6,20 +6,20 @@ using UnityEngine;
 
 public class GameplayHandler : MonoBehaviour
 {
-    private ICircleManager circleManager;
-    private int currMaxCircleSize;
+    private IFruitManager fruitManager;
+    private int currMaxFruitSize;
 
     [Header("Gameplay Settings")]
-    [SerializeField] private int initCircleNumber;
-    [SerializeField] private List<InitCircleSizeSpaceParams> InitCircleSizeSpaceParamsList;
+    [SerializeField] private int initFruitNumber;
+    [SerializeField] private List<InitFruitSizeSpaceParams> InitFruitSizeSpaceParamsList;
 
     [Header("Gameplay Sub-Components")]
-    [SerializeField] private CircleCreator circleCreator;
+    [SerializeField] private FruitCreator fruitCreator;
 
     // Start is called before the first frame update
     void Start()
     {
-        circleManager = Kernel.Instance.GetModule<ICircleManager>();
+        fruitManager = Kernel.Instance.GetModule<IFruitManager>();
         StartNewGame();
     }
 
@@ -32,17 +32,17 @@ public class GameplayHandler : MonoBehaviour
     [Button]
     public void StartNewGame()
     {
-        circleManager.ClearAllCircles();
-        circleCreator.StartNewGame();
+        fruitManager.ClearAllFruits();
+        fruitCreator.StartNewGame();
     }
 
     public void UpdateMaxCircleSize()
     {
-        currMaxCircleSize = circleManager.GetmaxCircleSize();
+        currMaxFruitSize = fruitManager.GetmaxFruitSize();
     }
 
     [System.Serializable]
-    public class InitCircleSizeSpaceParams
+    public class InitFruitSizeSpaceParams
     {
         public int min;
         public int max;

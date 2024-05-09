@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Game.Gameplay
 {
-    public class Circle : MonoBehaviour, ICircle
+    public class Fruit : MonoBehaviour, IFruit
     {
         [SerializeField] float scaleRatio = 0.1f;
         [SerializeField] float scaleStart = 1f;
@@ -42,9 +42,9 @@ namespace Assembly_CSharp_Editor.Assets.Sources.Scripts.Game.Gameplay
             {
                 return;
             }
-            if (collision.transform.GetComponent<ICircle>().Size == Size)
+            if (collision.transform.GetComponent<IFruit>().Size == Size)
             {
-                Kernel.Instance.GetModule<ICircleManager>().MergeCircles(this, collision.transform.GetComponent<ICircle>());
+                Kernel.Instance.GetModule<IFruitManager>().MergeFruits(this, collision.transform.GetComponent<IFruit>());
             }
         }
 

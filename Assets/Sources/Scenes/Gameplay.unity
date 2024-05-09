@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: aa7c2c8682ac80a6e95498c0c4f40460, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -266,13 +266,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f84c3878ab94a6c97b7647288ee65c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initCircleNumber: 4
-  InitCircleSizeSpaceParamsList:
-  - min: 1
-    max: 3
-  - min: 1
-    max: 3
-  circleCreator: {fileID: 481023136}
+  initFruitNumber: 0
+  InitFruitSizeSpaceParamsList:
+  - min: 0
+    max: 2
+  fruitCreator: {fileID: 481023136}
 --- !u!1 &481023134
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +282,7 @@ GameObject:
   - component: {fileID: 481023135}
   - component: {fileID: 481023136}
   m_Layer: 0
-  m_Name: CircleCreater
+  m_Name: FruitCreater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -818,7 +816,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2074095013}
   m_Layer: 0
-  m_Name: CirclesBox
+  m_Name: FruitsBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
